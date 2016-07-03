@@ -4,5 +4,5 @@ node_js:
   - v5
   - v4
 before_script:
-  - git config --add user.name Travis
-  - git config --add user.email travis@travis-ci.org
+  - git config --add user.name octocat
+  - git config --add user.email octocat@github.com
