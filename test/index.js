@@ -16,9 +16,6 @@ test('generates expected files', async t => {
     description: 'test',
     github: 'test',
     url: 'test.com',
-    // Pass in git name/email for Travis
-    name: 'travis',
-    email: 'travis@travis-ci.org',
   })
 
   await pify(generator.run.bind(generator))()
