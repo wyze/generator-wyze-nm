@@ -1,6 +1,7 @@
 'use strict' // eslint-disable-line strict
 
 const assign = require('object-assign')
+const humanize = require('humanize-url')
 const pify = require('pify')
 const yeoman = require('yeoman-generator')
 
@@ -19,6 +20,7 @@ module.exports = class extends yeoman.Base {
       {
         name: 'url',
         message: 'What is your personal website URL?',
+        filter: url => humanize(url),
         store: true,
       },
       {
@@ -35,6 +37,7 @@ module.exports = class extends yeoman.Base {
         const system = {
           name: this.user.git.name(),
           email: this.user.git.email(),
+          year: new Date().getFullYear(),
         }
         const tpl = assign({}, props, system)
 
@@ -54,6 +57,8 @@ module.exports = class extends yeoman.Base {
     this.npmInstall(
       [
         'ava',
+        'babel-cli',
+        'babel-preset-es2015',
         'eslint',
         'eslint-config-airbnb',
         'eslint-config-wyze',
