@@ -10,12 +10,47 @@
     "url": "<%= url %>"<% } %>
   },
   "scripts": {
+    "build": "babel src --out-dir lib",
+    "clean": "rimraf .nyc_output coverage lib",
+    "codecov": "nyc report -r text-lcov | codecov",
     "lint": "eslint src test",
+    "prebuild": "npm run clean && npm run test",
     "pretest": "npm run lint",
-    "test": "ava"
+    "preversion": "npm run build",
+    "test": "nyc npm run test:only",
+    "test:only": "ava",
+    "test:watch": "npm run test:only -- --watch"
   },
   "main": "lib/index",
+  "files": [
+    "lib"
+  ],
+  "ava": {
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ]
+  },
   "eslintConfig": {
     "extends": "wyze/base"
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "src/*.js"
+    ],
+    "exclude": [
+      "lib/**",
+      "node_modules/**"
+    ],
+    "require": [
+      "babel-register"
+    ]
   }
 }

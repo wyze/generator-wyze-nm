@@ -33,20 +33,32 @@ module.exports = class extends yeoman.Base {
     ]
 
     return this.prompt(prompts)
-      .then(props => {
-        const system = {
-          name: this.user.git.name(),
-          email: this.user.git.email(),
-          year: new Date().getFullYear(),
-        }
-        const tpl = assign({}, props, system)
-
-        this.fs.copyTpl(
-          this.templatePath('_package.json'),
-          this.destinationPath('package.json'),
-          tpl
-        )
+      .then(answers => {
+        this.answers = answers
       })
+  }
+
+  default() {
+    const system = {
+      name: this.user.git.name(),
+      email: this.user.git.email(),
+      year: new Date().getFullYear(),
+    }
+    const props = assign({}, this.answers, system)
+    const mv = ( from, to ) =>
+      this.fs.move(this.destinationPath(from), this.destinationPath(to))
+
+    this.fs.copyTpl(
+      `${this.templatePath()}/**`,
+      this.destinationPath(),
+      props
+    )
+
+    mv('_package.json', 'package.json')
+    mv('editorconfig', '.editorconfig')
+    mv('gitattributes', '.gitattributes')
+    mv('gitignore', '.gitignore')
+    mv('travis.yml', '.travis.yml')
   }
 
   git() {
@@ -59,11 +71,16 @@ module.exports = class extends yeoman.Base {
         'ava',
         'babel-cli',
         'babel-preset-es2015',
+        'babel-preset-stage-2',
+        'babel-register',
+        'codecov',
         'eslint',
         'eslint-config-airbnb',
         'eslint-config-wyze',
         'eslint-plugin-import',
         'eslint-plugin-wyze',
+        'nyc',
+        'rimraf',
       ],
       { 'save-dev': true }
     )
