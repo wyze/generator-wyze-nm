@@ -28,7 +28,8 @@ module.exports = class extends yeoman.Base {
         message: 'What is your GitHub username?',
         store: true,
         default: () => pify(this.user.github.username)(),
-        validate: x => x.length > 0 ? true : 'You have to provide a username!',
+        validate: user =>
+          user.length > 0 ? true : 'You have to provide a username!',
       },
     ]
 

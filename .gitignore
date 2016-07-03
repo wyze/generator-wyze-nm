@@ -3,6 +3,7 @@
 coverage
 lib
 node_modules
+temp
 
 # Files
 .DS_Store
