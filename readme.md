@@ -1,6 +1,7 @@
 # generator-wyze-nm
 
 [![Build Status][travis-image]][travis-url]
+[![codecov.io][codecov-image]][codecov-url]
 [![npm][npm-image]][npm-url]
 [![dependencies][deps-image]][deps-url]
 [![devDependencies][depsdev-image]][depsdev-url]
@@ -29,6 +30,9 @@ Released under the MIT license. See [license](license) for details.
 
 [travis-image]: https://img.shields.io/travis/wyze/generator-wyze-nm.svg?style=flat-square
 [travis-url]: https://travis-ci.org/wyze/generator-wyze-nm
+
+[codecov-image]: https://img.shields.io/codecov/c/github/wyze/generator-wyze-nm.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/wyze/generator-wyze-nm
 
 [npm-image]: https://img.shields.io/npm/v/generator-wyze-nm.svg?style=flat-square
 [npm-url]: https://npmjs.com/package/generator-wyze-nm

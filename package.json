@@ -11,8 +11,11 @@
   },
   "scripts": {
     "lint": "eslint app test",
+    "codecov": "nyc report -r text-lcov | codecov",
     "pretest": "npm run lint",
-    "test": "ava"
+    "test": "nyc npm run test:only",
+    "test:only": "ava",
+    "test:watch": "npm run test:only -- --watch"
   },
   "main": "app/index",
   "files": [
@@ -38,11 +41,13 @@
   },
   "devDependencies": {
     "ava": "^0.15.2",
+    "codecov": "^1.0.1",
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-config-wyze": "^2.0.0",
     "eslint-plugin-import": "^1.11.0",
     "eslint-plugin-wyze": "^1.4.0",
+    "nyc": "^7.0.0",
     "yeoman-assert": "^2.2.1",
     "yeoman-test": "^1.4.0"
   }

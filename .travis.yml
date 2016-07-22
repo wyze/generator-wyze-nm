@@ -6,3 +6,5 @@ node_js:
 before_script:
   - git config --add user.name octocat
   - git config --add user.email octocat@github.com
+after_success:
+  npm run codecov
