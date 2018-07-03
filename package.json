@@ -15,7 +15,9 @@
     "pretest": "npm run lint",
     "test": "nyc npm run test:only",
     "test:only": "ava",
-    "test:watch": "npm run test:only -- --watch"
+    "test:watch": "npm run test:only -- --watch",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "main": "app/index",
   "files": [
@@ -37,7 +39,8 @@
     "humanize-url": "^1.0.1",
     "object-assign": "^4.1.0",
     "pify": "^2.3.0",
-    "yeoman-generator": "^0.24.1"
+    "yeoman-generator": "^0.24.1",
+    "snyk": "^1.88.1"
   },
   "devDependencies": {
     "ava": "^0.15.2",
@@ -50,5 +53,6 @@
     "nyc": "^7.1.0",
     "yeoman-assert": "^2.2.1",
     "yeoman-test": "^1.4.0"
-  }
+  },
+  "snyk": true
 }
